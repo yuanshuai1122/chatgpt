@@ -1,4 +1,4 @@
-package vip.yuanshuai.chatgpt.beans.ChatStream;
+package vip.yuanshuai.chatgptapi.beans.dto.entity.chatProcess;
 
 import lombok.Data;
 
@@ -11,11 +11,8 @@ import java.util.List;
  * @create: 2023-03-06 17:31
  */
 @Data
-public class ChatStream {
+public class ChatProcess {
 
-  /**
-   * 提示词列表
-   */
   private List<ChatPrompt> prompt;
 
 }

@@ -19,7 +19,7 @@ import javax.validation.Valid;
  **/
 @RestController
 @Slf4j
-@RequestMapping("/chatgpt")
+@RequestMapping("/chat")
 public class ChatGptController {
 
     private final ChatGptService chatService;

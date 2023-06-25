@@ -13,9 +13,8 @@ spring:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
   redis:
-    host: 49.233.43.147
-    port: 16379
-    password: aoL$Yk0SDIvU&zKW
+    host: 129.226.114.87
+    port: 6379
     database: 9
   datasource:
     dynamic:
