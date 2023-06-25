@@ -1,17 +1,22 @@
 server:
-  port: 8088
+  port: 8077
   servlet:
-    context-path: /chatgpt
+    context-path: /api
+
 
 #  DataSource Config
 spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   redis:
-    host: 129.226.114.87
-    port: 6379
-    database: 4
+    host: 49.233.43.147
+    port: 16379
+    password: aoL$Yk0SDIvU&zKW
+    database: 9
   datasource:
     dynamic:
       druid:
@@ -22,11 +27,10 @@ spring:
         min-idle: 2
         test-on-borrow: false
         test-on-return: false
-        test-while-idle: false
+        test-while-idle: true
         time-between-eviction-runs-millis: 60000
-        validation-query: select 'x'
-      primary: chatgptdemodb #设置默认的数据源或者数据源组,默认值即为master
-      strict: true #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+        validation-query: select 1
+      primary: chatgptdemodb #??????????????,?????master
       datasource:
         chatgptdemodb:
           driver-class-name: com.mysql.cj.jdbc.Driver
@@ -34,3 +38,9 @@ spring:
           url: jdbc:mysql://bj-cynosdbmysql-grp-o9u7ldum.sql.tencentcdb.com:21457/chatgpt_demo_db?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
           username: root
           password: hh%Gy&rTYM@oepc6
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
