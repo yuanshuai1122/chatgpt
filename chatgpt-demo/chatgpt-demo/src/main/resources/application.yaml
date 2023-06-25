@@ -1,0 +1,9 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: chatgpt-demo
+
+openai:
+  api:
+    key: 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
