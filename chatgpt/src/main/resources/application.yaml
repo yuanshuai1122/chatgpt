@@ -1,7 +1,7 @@
 server:
-  port: 8088
+  port: 8066
   servlet:
-    context-path: /chatgpt
+    context-path: /api
 
 #  DataSource Config
 spring:
