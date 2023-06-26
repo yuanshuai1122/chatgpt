@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/chatYW.iml" filepath="$PROJECT_DIR$/.idea/chatYW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../front-chatgpt/.idea/front-chatgpt.iml" filepath="$PROJECT_DIR$/../front-chatgpt/.idea/front-chatgpt.iml" />
     </modules>
   </component>
 </project>
