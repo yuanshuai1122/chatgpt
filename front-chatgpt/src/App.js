@@ -16,7 +16,6 @@ const App = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenKey, setIsModalOpenKey] = useState(false);
-  const [isModalOpenSeeMsg, setIsModalOpenSeeMsg] = useState(false)
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -44,14 +43,6 @@ const App = () => {
     setIsModalOpenKey(false);
   };
 
-
-
-  const handleOkSeeMsg = () => {
-    setHistoricalData([])
-    setIsModalOpenSeeMsg(false);
-  };
-
-
   const chatWrapperRef = useRef();
 
   const [onRequest, setOnRequest] = useState(false);
@@ -60,12 +51,11 @@ const App = () => {
   const [chatKey, setChatKey] = useState(window.localStorage.getItem('key'))
   const [signKey, setSignKey] = useState('')
   const [newKey, setNewKey] = useState('')
-  const [historicalData, setHistoricalData] = useState([])
   const [keyLoading, setKeyLoading] = useState(false)
 
   const getAnswer = async () => {
     if (!chatKey) {
-      messageAntd.error('使用本站请先获取key')
+      messageAntd.error('使用本站请先获取KEY')
       return
     }
     if (!question) {
@@ -179,58 +169,6 @@ const App = () => {
     }
   }
 
-
-  const saveJson = () => {
-    if (!messages.length > 2) {
-      return
-    }
-    // 创建一个Date对象
-    let today = new Date();
-    // 获取年份
-    let year = today.getFullYear();
-    // 获取月份（注意：月份从0开始，所以需要加1）
-    let month = today.getMonth() + 1;
-    // 获取日期
-    let day = today.getDate();
-    // 输出结果
-    console.log(year + "-" + month + "-" + day);
-    // 将数组转换为 JSON 字符串
-    const jsonStr = JSON.stringify(messages);
-    // 创建一个 Blob 对象
-    const blob = new Blob([jsonStr], {type: 'application/json'});
-    // 创建一个下载链接
-    const url = URL.createObjectURL(blob);
-    // 创建一个 <a> 标签并设置下载链接
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${messages[0].content}-${year}-${month}-${day}.json`;
-    // 将 <a> 标签添加到页面并触发点击事件
-    document.body.appendChild(link);
-    link.click();
-    // 释放资源
-    URL.revokeObjectURL(url);
-  }
-
-  const props = {
-    showUploadList: false,
-    maxCount: 1,
-    accept: '.json',
-    name: 'file',
-    beforeUpload:(file) => {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsText(file);
-        reader.onload = (event) => {
-          const fileContent = event.target.result;
-          const jsonData = JSON.parse(fileContent);
-          console.log(jsonData); // 输出 JSON 数据
-          setHistoricalData(jsonData)
-          resolve(false)
-        };
-      });
-    },
-  };
-
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
       .then(() => {
@@ -268,7 +206,6 @@ const App = () => {
                 block
                 onClick={() => {
                   setSignKey('')
-                  saveJson()
                   setMessages([])
                 }}
               >
@@ -285,26 +222,6 @@ const App = () => {
                 }
                 getKey()
               }} block>{chatKey ? '查看 | 复制KEY' : '获取KEY'}</Button>
-            </div>
-            <div className='getkey'>
-              <Button
-                block
-                onClick={() => {
-                  saveJson()
-                }}
-              >
-                保存当前对话
-              </Button>
-            </div>
-            <div className='getkey'>
-              <Button
-                block
-                onClick={() => {
-                  setIsModalOpenSeeMsg(true)
-                }}
-              >
-                查看历史对话
-              </Button>
             </div>
             <div className='getkey'>
               <Button
@@ -331,7 +248,7 @@ const App = () => {
                           ?
                           <div className="bubble right">
                             <a className="avatar" href><img
-                              src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202106%2F22%2F20210622154903_3c36a.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1682005825&t=24cfbac8798a6e98e1814e08f3d02518"
+                              src="/ddog.jpeg"
                               alt/></a>
                             <div className="wrap">
                               <div style={{
@@ -344,7 +261,7 @@ const App = () => {
                           :
                           <div className="bubble left">
                             <a className="avatar" href><img
-                              src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202106%2F09%2F20210609081952_51ef5.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1682005840&t=c4e15c2e0df93c6fdf6498a615383c4e"
+                              src="/fat.jpg"
                               alt/></a>
                             <div className="wrap">
                               <div style={{
@@ -441,85 +358,18 @@ const App = () => {
       </Modal>
 
       <Modal title="提示" open={isModalOpenKey} onOk={handleOkKey} onCancel={handleCancelKey}>
-        <p>请联系客服获取新的key请妥善保存，key是您使用本网站的唯一对话凭证！</p>
+        <p>请联系管理员获取新的key请妥善保存，key是您使用本网站的唯一对话凭证！</p>
         <p>
           <img style={{width: 423, height: 300}}
-               src="/wxcode.jpg" alt=""/>
+               src="/dog.gif" alt=""/>
         </p>
         <p>
           <Input
             value={newKey}
             onChange={(e) => setNewKey(e.target.value)}
-            placeholder='您的新key'
+            placeholder='请输入您的新KEY'
           />
         </p>
-      </Modal>
-
-
-      <Modal
-        style={{
-          top: 20,
-        }}
-        title="查看历史对话"
-        open={isModalOpenSeeMsg}
-        onOk={handleOkSeeMsg}
-        onCancel={handleOkSeeMsg}
-      >
-        <Upload {...props}>
-          <Button icon={<UploadOutlined />}>
-            上传历史对话JSON文件
-          </Button>
-        </Upload>
-        <div
-          style={{
-            height: 450,
-            overflowY: "auto"
-          }}
-        >
-          {
-            historicalData.map((ele, index) => {
-              return <div key={index}>
-                {
-                  ele.type !== 'answer'
-                    ?
-                    <div className="bubble right">
-                      <a className="avatar" href><img
-                        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202106%2F22%2F20210622154903_3c36a.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1682005825&t=24cfbac8798a6e98e1814e08f3d02518"
-                        alt/></a>
-                      <div className="wrap">
-                        <div style={{
-                          maxWidth: `calc(100% - 5px)`
-                        }} className="content">
-                          <Message content={ele.content}/>
-                        </div>
-                      </div>
-                    </div>
-                    :
-                    <div className="bubble left">
-                      <a className="avatar" href><img
-                        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202106%2F09%2F20210609081952_51ef5.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1682005840&t=c4e15c2e0df93c6fdf6498a615383c4e"
-                        alt/></a>
-                      <div className="wrap">
-                        <div style={{
-                          maxWidth: `calc(100% - 5px)`
-
-                        }} className="content">
-                          {
-                            ele.content
-                              ?
-                              <Message content={ele.content}/>
-                              :
-                              <LoadingOutlined style={{color: 'rgba(0,0,0,.45)'}}/>
-                          }
-
-                        </div>
-                      </div>
-                    </div>
-                }
-              </div>
-            })
-          }
-        </div>
       </Modal>
     </div>
 
