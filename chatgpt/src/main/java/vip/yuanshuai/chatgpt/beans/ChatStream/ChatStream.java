@@ -14,6 +14,11 @@ import java.util.List;
 public class ChatStream {
 
   /**
+   * 聊天key
+   */
+  private String chatKey;
+
+  /**
    * 提示词列表
    */
   private List<ChatPrompt> prompt;
