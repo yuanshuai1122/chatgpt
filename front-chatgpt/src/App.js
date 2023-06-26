@@ -68,6 +68,8 @@ const App = () => {
       content: question
     }];
     setMessages(newMessages);
+    // 设置本地缓存
+    window.localStorage.setItem("messages", JSON.stringify(newMessages))
     setQuestion("");
     setOnRequest(true);
     let mesStr = ''
@@ -120,6 +122,7 @@ const App = () => {
               }
             })
             setMessages([...newMessages1]);
+            window.localStorage.setItem("messages", JSON.stringify([...newMessages1]))
           })
         } catch (e) {
           console.log(e);
@@ -129,6 +132,11 @@ const App = () => {
   };
 
   useEffect(() => {
+    // 回显示历史对话
+    const reMes = window.localStorage.getItem('messages')
+    if (reMes) {
+      setMessages(JSON.parse(reMes))
+    }
     // 监听myDiv元素的子元素变化
     const observer = new MutationObserver(() => {
       // 当myDiv元素的高度增加后，滚动到底部
@@ -207,6 +215,7 @@ const App = () => {
                 onClick={() => {
                   setSignKey('')
                   setMessages([])
+                  window.localStorage.setItem("messages", "")
                 }}
               >
                 <PlusOutlined/>
@@ -247,9 +256,10 @@ const App = () => {
                         ele.role !== 'assistant'
                           ?
                           <div className="bubble right">
-                            <a className="avatar" href><img
+                            <a className="avatar"><img
                               src="/ddog.jpeg"
-                              alt/></a>
+                            />
+                            </a>
                             <div className="wrap">
                               <div style={{
                                 maxWidth: `calc(100% - 5px)`
@@ -260,9 +270,9 @@ const App = () => {
                           </div>
                           :
                           <div className="bubble left">
-                            <a className="avatar" href><img
+                            <a className="avatar"><img
                               src="/fat.jpg"
-                              alt/></a>
+                            /></a>
                             <div className="wrap">
                               <div style={{
                                 maxWidth: `calc(100% - 5px)`
@@ -355,6 +365,9 @@ const App = () => {
         <br/>
         <br/>
         在您开始使用 本网站 之前，请确保您已完全理解以上所有条款，并接受其中的所有条款。如果您对本免责声明有任何疑问，请勿使用该服务。
+        <br/>
+        <br/>
+        最后，如果使用有什么问题，那就是故意的(doge).
       </Modal>
 
       <Modal title="提示" open={isModalOpenKey} onOk={handleOkKey} onCancel={handleCancelKey}>
