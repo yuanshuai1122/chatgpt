@@ -23,9 +23,9 @@ public class ChatExecutorConfig {
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   //核心线程池大小
-  private final int corePoolSize = 16;
+  private final int corePoolSize = 1;
   //最大线程数
-  private final int maxPoolSize = 64;
+  private final int maxPoolSize = 4;
   //队列容量
   private final int queueCapacity = 256;
   //活跃时间/秒

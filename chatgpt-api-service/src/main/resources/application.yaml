@@ -13,9 +13,10 @@ spring:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
   redis:
-    host: 129.226.114.87
+    host: 182.61.11.252
     port: 6379
     database: 9
+    password: HnYU0++qi1gF*7su%syh
   datasource:
     dynamic:
       druid:
