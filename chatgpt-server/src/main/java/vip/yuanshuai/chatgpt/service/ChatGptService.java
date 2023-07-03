@@ -88,7 +88,7 @@ public class ChatGptService {
     // 加密key
     String signKey = ValueUtils.getUUID();
     // 写日志数据库
-    ChatSuccessLog chatSuccessLog = new ChatSuccessLog(null, 999, ChatRoleEnum.USER.getRole(), ValueUtils.getMessageUUID(), signKey, new Gson().toJson(dto.getPrompt()), new Date());
+    ChatSuccessLog chatSuccessLog = new ChatSuccessLog(null, chatUserKey.getId(), ChatRoleEnum.USER.getRole(), ValueUtils.getMessageUUID(), signKey, new Gson().toJson(dto.getPrompt()), new Date());
     asyncTask.setChatLog(chatSuccessLog);
     // 放入缓存队列
     redisTemplate.opsForValue().set(signKey, new Gson().toJson(chatSuccessLog), 50, TimeUnit.MINUTES);
