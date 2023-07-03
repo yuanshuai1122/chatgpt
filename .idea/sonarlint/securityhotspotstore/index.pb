@@ -5,8 +5,6 @@ Ychatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/controller/ChatContr
 Schatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/service/ChatService.java,2/a/2ab3936716e01adfc879fd9af61c8e704c7f4975
 ‚
 Rchatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/utils/RequestUtils.java,6/1/61fec1ffaf955778b580335be86943a4f52f8df1
-w
-Gchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/tasks/AsyncTask.java,7/1/71d3c2e1b3dbeafb41b6cb5d665148148841ae96
 €
 Pchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/config/LogExecutorConfig.java,5/f/5f46d92bfeb98e829025303154864ef8644e51e2
 d
@@ -17,8 +15,6 @@ d
 Nchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatResult/Usage.java,f/7/f72957afd50cd6906e73b685a50e5d1d60683f4b
 ƒ
 Schatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatStream/ChatPrompt.java,a/0/a097251a0d28694867d41453b2e88e1f1627dd4e
-~
-Nchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java,a/0/a0194bfbc11928f5d969731d318a60fdf1c08276
 C
 chatgpt-server/mvnw,b/c/bcda960e7cdcbdfd38be9d3e3f7b0366d750041c
 I

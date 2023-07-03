@@ -7,10 +7,6 @@ Schatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/service/ChatService.
 Ychatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/controller/ChatController.java,b/2/b2edb128745e8688f7781ef89a2a79ce22fdf0a0
 I
 chatgpt-server/.gitignore,9/f/9f6887ad4da1bac23a7467236447d49fdb0778da
-w
-Gchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/tasks/AsyncTask.java,7/1/71d3c2e1b3dbeafb41b6cb5d665148148841ae96
-~
-Nchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java,a/0/a0194bfbc11928f5d969731d318a60fdf1c08276
 ƒ
 Schatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatStream/ChatPrompt.java,a/0/a097251a0d28694867d41453b2e88e1f1627dd4e
 ƒ

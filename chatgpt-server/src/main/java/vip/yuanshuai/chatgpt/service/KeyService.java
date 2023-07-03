@@ -2,6 +2,7 @@ package vip.yuanshuai.chatgpt.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import vip.yuanshuai.chatgpt.beans.ChatUserKey;
 import vip.yuanshuai.chatgpt.beans.ResponseResult;
@@ -33,6 +34,8 @@ public class KeyService {
     private RedisUtils redisUtils;
     @Autowired
     private ChatUserKeyMapper chatUserKeyMapper;
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 创建key
@@ -50,6 +53,8 @@ public class KeyService {
         String userKey = ValueUtils.getUserKey();
         ChatUserKey chatUserKey = new ChatUserKey(null, userKey, ip, 10, 10, KeyStatusEnum.NORMAL.getStatus(), new Date(), DateUtils.addDaysToDate(new Date(), 3));
         chatUserKeyMapper.insert(chatUserKey);
+        // 放入缓存 3天
+        redisTemplate.opsForValue().set(userKey, chatUserKey, 3, TimeUnit.DAYS);
         log.info("获取key成功，ip:{}, userKey:{}", ip, userKey);
         return new ResponseResult<>(ResultCode.SUCCESS.getCode(), "获取成功", userKey);
     }
