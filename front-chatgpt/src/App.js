@@ -16,6 +16,28 @@ const App = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenKey, setIsModalOpenKey] = useState(false);
+  const chatWrapperRef = useRef();
+  const [onRequest, setOnRequest] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [chatKey, setChatKey] = useState(window.localStorage.getItem('key'))
+  const [signKey, setSignKey] = useState('')
+  const [newKey, setNewKey] = useState('')
+  const [keyLoading, setKeyLoading] = useState(false)
+  const [streamHosts, setStreamHosts] = useState([
+    '//api-chatgpt.yuanshuai.vip',
+    '//apiv2-chatgpt.yuanshuai.vip'
+  ])
+
+  /**
+   * 获取随机推流hosts
+   */
+  const getRandomStreamHost = ()=> {
+    // 生成一个随机索引
+    const randomIndex = Math.floor(Math.random() * streamHosts.length);
+    // 获取随机元素
+    return streamHosts[randomIndex];
+  };
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -42,16 +64,6 @@ const App = () => {
   const handleCancelKey = () => {
     setIsModalOpenKey(false);
   };
-
-  const chatWrapperRef = useRef();
-
-  const [onRequest, setOnRequest] = useState(false);
-  const [question, setQuestion] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [chatKey, setChatKey] = useState(window.localStorage.getItem('key'))
-  const [signKey, setSignKey] = useState('')
-  const [newKey, setNewKey] = useState('')
-  const [keyLoading, setKeyLoading] = useState(false)
 
   const getAnswer = async () => {
     if (!chatKey) {
@@ -101,7 +113,10 @@ const App = () => {
             content: ''
             }
           ];
-          const envSource = new EventSource(`//api-chatgpt.yuanshuai.vip/api/chatgpt/stream?signKey=${res.data}`)
+
+          // 获取随机推流url
+          const randomStreamHost = getRandomStreamHost();
+          const envSource = new EventSource(`${randomStreamHost}/api/chatgpt/stream?signKey=${res.data}`)
           console.log(envSource);
           envSource.addEventListener('error', function(event) {
             messageAntd.warning('服务波动，请重试！')
