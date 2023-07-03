@@ -32,16 +32,16 @@ public class ValueUtils {
   }
 
   /**
-   * 获取api key
+   * 获取user key
    * @return
    */
-  public static String getApiKey() {
-    StringBuffer buffer = new StringBuffer("");
+  public static String getUserKey() {
+    StringBuilder builder = new StringBuilder();
     String uuid = UUID.randomUUID().toString();
     for (String s : uuid.split("-")) {
-      buffer.append(s.toUpperCase());
+      builder.append(s.toUpperCase());
     }
-    return buffer.toString();
+    return builder.toString();
   }
 
   /**
