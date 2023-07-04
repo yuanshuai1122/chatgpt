@@ -72,7 +72,7 @@ public class ChatGptService {
       return new ResponseResult<>(ResultCode.PARAM_IS_BLANK.getCode(), "key未激活");
     }
     // 验证过期
-    if (chatUserKey.getExpireTime().compareTo(new Date()) > 0) {
+    if (chatUserKey.getExpireTime().compareTo(new Date()) < 0) {
       return new ResponseResult<>(ResultCode.PARAM_IS_BLANK.getCode(), "key已过期");
     }
     // 验证次数

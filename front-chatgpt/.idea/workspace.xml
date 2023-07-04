@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c16a4e4c-0876-4ff6-b730-d0a743e95014" name="Changes" comment="随机推流host" />
+    <list default="true" id="c16a4e4c-0876-4ff6-b730-d0a743e95014" name="Changes" comment="随机推流host">
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/KeyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/KeyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/utils/RedisUtils.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,22 +30,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/yuanshuai/space/chatgpt/front-chatgpt",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yuanshuai/space/chatgpt/front-chatgpt&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
@@ -56,6 +62,7 @@
       <workItem from="1687782288882" duration="5625000" />
       <workItem from="1688103080581" duration="74000" />
       <workItem from="1688347546627" duration="654000" />
+      <workItem from="1688361532418" duration="832000" />
     </task>
     <task id="LOCAL-00001" summary="ui修改">
       <created>1687784936999</created>
