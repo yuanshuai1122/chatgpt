@@ -14,6 +14,7 @@ public class ChatPrompt {
   /**
    * 角色
    */
+  // system, user, assistant, or function.
   private String role;
 
 

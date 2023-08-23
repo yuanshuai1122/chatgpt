@@ -23,4 +23,9 @@ public class ChatStream {
    */
   private List<ChatPrompt> prompt;
 
+  /**
+   * 模型
+   */
+  private String model;
+
 }

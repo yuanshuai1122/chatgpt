@@ -54,4 +54,9 @@ public class ChatSuccessLog {
    * 创建时间
    */
   private Date createTime;
+
+  /**
+   * 模型
+   */
+  private String model;
 }

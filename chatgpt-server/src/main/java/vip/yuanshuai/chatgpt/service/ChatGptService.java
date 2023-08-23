@@ -13,6 +13,7 @@ import vip.yuanshuai.chatgpt.beans.ChatUserKey;
 import vip.yuanshuai.chatgpt.beans.ResponseResult;
 import vip.yuanshuai.chatgpt.enums.ChatRoleEnum;
 import vip.yuanshuai.chatgpt.enums.KeyStatusEnum;
+import vip.yuanshuai.chatgpt.enums.ModelEnums;
 import vip.yuanshuai.chatgpt.enums.ResultCode;
 import vip.yuanshuai.chatgpt.mapper.ChatUserKeyMapper;
 import vip.yuanshuai.chatgpt.tasks.AsyncTask;
@@ -54,17 +55,14 @@ public class ChatGptService {
    * @return {@link ResponseResult}<{@link String}>
    */
   public ResponseResult<String> chatSign(ChatStream dto) {
-    // 获取缓存中的key
-    String value = redisTemplate.opsForValue().get(dto.getChatKey());
-    ChatUserKey chatUserKey;
-    if (StringUtils.isNotBlank(value)) {
-      chatUserKey = new Gson().fromJson(value, ChatUserKey.class);
-    }else {
-      QueryWrapper<ChatUserKey> wrapper = new QueryWrapper<>();
-      wrapper.eq("user_key", dto.getChatKey());
-      chatUserKey = chatUserKeyMapper.selectOne(wrapper);
+    if (StringUtils.isBlank(dto.getModel())) {
+        dto.setModel(ModelEnums.GPT_VERSION_3_5.getModel());
     }
-    if (null == chatUserKey.getId()) {
+    // 获取缓存中的key
+    QueryWrapper<ChatUserKey> wrapper = new QueryWrapper<>();
+    wrapper.eq("user_key", dto.getChatKey());
+    ChatUserKey chatUserKey = chatUserKeyMapper.selectOne(wrapper);
+    if (null == chatUserKey) {
       return new ResponseResult<>(ResultCode.PARAM_IS_BLANK.getCode(), "key不存在");
     }
     // 验证激活
@@ -81,14 +79,12 @@ public class ChatGptService {
     }
     // 次数减1
     chatUserKey.setRemainTimes(chatUserKey.getRemainTimes() - 1);
-    // 写入缓存
-    redisTemplate.opsForValue().set(chatUserKey.getUserKey(), new Gson().toJson(chatUserKey));
     // 更新数据库
     asyncTask.updateChatUserKey(chatUserKey);
     // 加密key
     String signKey = ValueUtils.getUUID();
     // 写日志数据库
-    ChatSuccessLog chatSuccessLog = new ChatSuccessLog(null, chatUserKey.getId(), ChatRoleEnum.USER.getRole(), ValueUtils.getMessageUUID(), signKey, new Gson().toJson(dto.getPrompt()), new Date());
+    ChatSuccessLog chatSuccessLog = new ChatSuccessLog(null, chatUserKey.getId(), ChatRoleEnum.USER.getRole(), ValueUtils.getMessageUUID(), signKey, new Gson().toJson(dto.getPrompt()), new Date(), dto.getModel());
     asyncTask.setChatLog(chatSuccessLog);
     // 放入缓存队列
     redisTemplate.opsForValue().set(signKey, new Gson().toJson(chatSuccessLog), 50, TimeUnit.MINUTES);

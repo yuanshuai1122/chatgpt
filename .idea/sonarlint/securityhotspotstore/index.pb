@@ -7,8 +7,6 @@ d
 4chatgpt-server/.mvn/wrapper/maven-wrapper.properties,d/3/d3d2e538c1fed6dff5ef47b7f713e31a28346e2c
 ~
 Nchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatResult/Usage.java,f/7/f72957afd50cd6906e73b685a50e5d1d60683f4b
-ƒ
-Schatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatStream/ChatPrompt.java,a/0/a097251a0d28694867d41453b2e88e1f1627dd4e
 C
 chatgpt-server/mvnw,b/c/bcda960e7cdcbdfd38be9d3e3f7b0366d750041c
 I
@@ -31,14 +29,10 @@ F
 chatgpt-server/pom.xml,0/7/072a1c8ff46105360582f10ddaae228f61e4dfa2
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-|
-Lchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatSuccessLog.java,b/1/b1cdbdb730c335798a246706ed6f9dc4d58a198c
 x
 Hchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/enums/ResultCode.java,7/1/7166f776abe21d5e0b3825dd3c754b56d83cc46f
 z
 Jchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/enums/ChatRoleEnum.java,d/7/d7637f04f08ef495ef615e36a894344dc6055e1f
-y
-Ichatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatUserKey.java,0/f/0f13175e57cdfd97773177ba5937ffb3bd6f464a
 u
 Echatgpt-server/src/main/java/vip/yuanshuai/chatgpt/utils/IPUtils.java,e/4/e4b343e885050cf0b41b913893b9cc41d95e8d14
 {
@@ -49,10 +43,6 @@ z
 Jchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/KeyService.java,b/c/bc05ba35557ed5be5e51b768bbd7409244ce1c90
 €
 Pchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/controller/KeyController.java,0/2/02e641650f9da9606e55d342ae31ee72999022ea
-ƒ
-Schatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatStream/ChatStream.java,5/2/52b303583789d21cdc9777ae372bc42e87aceea7
-w
-Gchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/tasks/AsyncTask.java,7/1/71d3c2e1b3dbeafb41b6cb5d665148148841ae96
 w
 Gchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/utils/DateUtils.java,b/2/b2431005bf6ea7b280ce6ec09f842026e585d1e7
 x
