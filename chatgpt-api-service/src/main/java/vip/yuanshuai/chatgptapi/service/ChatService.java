@@ -205,7 +205,7 @@ public class ChatService {
       client.url(ApiBaseUrl.BASE_CHAT_URL);
       client.addHeader("Content-Type", "application/json");
       client.addHeader("Authorization", "Bearer " + "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");
-      client.addParam("model", "gpt-3.5-turbo");
+      client.addParam("model", "gpt-4-0613");
       client.addParam("messages", dto.getPrompt());
       String sync = client.post(true).sync();
       ChatResult chatResult = JSON.parseObject(sync, ChatResult.class);

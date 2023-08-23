@@ -36,15 +36,13 @@ public class RequestUtils {
    */
   public static Map<String, Object> buildRequestParams(String value) {
     Map<String, Object> data = new HashMap<>();
-    //data.put("model", "gpt-4-0613");
-    data.put("model", "gpt-3.5-turbo-0613");
+    data.put("model", "gpt-4-0613");
     data.put("stream", true);
     data.put("top_p", 1);
     data.put("temperature", 1);
     data.put("n", 1);
     data.put("presence_penalty", 0);
     data.put("frequency_penalty", 0);
-    //data.put("max_tokens", 1);
     return data;
   }
 
