@@ -9,8 +9,6 @@ d
 Nchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatResult/Usage.java,f/7/f72957afd50cd6906e73b685a50e5d1d60683f4b
 C
 chatgpt-server/mvnw,b/c/bcda960e7cdcbdfd38be9d3e3f7b0366d750041c
-I
-chatgpt-server/.gitignore,9/f/9f6887ad4da1bac23a7467236447d49fdb0778da
 É
 Schatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatResult/ChatResult.java,d/0/d016dcf3aec7f870ea114361cbe24cfa0015c6d5
 Ä
@@ -59,15 +57,9 @@ Gchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/tasks/AsyncTask.java,7/1/71
 [chatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/beans/dto/entity/ChatApiKey.java,0/0/006adbccd2e3786a2b41acce96ae527d8b426d5b
 ò
 hchatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/beans/dto/entity/chatProcess/ChatProcess.java,9/2/927a852b93eeea9fa8c6a053a734dcf799ecd091
-]
--.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
 è
 _chatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/beans/dto/entity/ChatSuccessLog.java,2/c/2c699433fcf27876ff4709ca0e93013b16395945
 Ä
 Pchatgpt-api-service/src/main/java/vip/yuanshuai/chatgptapi/enums/ModelEnums.java,b/3/b3f3273d4fd6618afaccd95fa08b002fb7f1973f
 |
 Lchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/beans/ChatSuccessLog.java,b/1/b1cdbdb730c335798a246706ed6f9dc4d58a198c
-~
-Nchatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java,a/0/a0194bfbc11928f5d969731d318a60fdf1c08276
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0

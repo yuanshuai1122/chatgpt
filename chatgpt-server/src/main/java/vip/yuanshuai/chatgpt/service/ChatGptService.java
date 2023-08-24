@@ -55,9 +55,9 @@ public class ChatGptService {
    * @return {@link ResponseResult}<{@link String}>
    */
   public ResponseResult<String> chatSign(ChatStream dto) {
-    if (StringUtils.isBlank(dto.getModel())) {
-        dto.setModel(ModelEnums.GPT_VERSION_3_5.getModel());
-    }
+    // 换取模型
+    ModelEnums modelEnum = ModelEnums.search(dto.getModel());
+    dto.setModel(modelEnum.getModel());
     // 获取缓存中的key
     QueryWrapper<ChatUserKey> wrapper = new QueryWrapper<>();
     wrapper.eq("user_key", dto.getChatKey());
@@ -87,7 +87,7 @@ public class ChatGptService {
     ChatSuccessLog chatSuccessLog = new ChatSuccessLog(null, chatUserKey.getId(), ChatRoleEnum.USER.getRole(), ValueUtils.getMessageUUID(), signKey, new Gson().toJson(dto.getPrompt()), new Date(), dto.getModel());
     asyncTask.setChatLog(chatSuccessLog);
     // 放入缓存队列
-    redisTemplate.opsForValue().set(signKey, new Gson().toJson(chatSuccessLog), 50, TimeUnit.MINUTES);
+    redisTemplate.opsForValue().set(signKey, new Gson().toJson(chatSuccessLog), 5, TimeUnit.MINUTES);
     // 返回key
     log.info("请求chatSign结束, 返回值key: {}", signKey);
     return new ResponseResult<>(ResultCode.SUCCESS.getCode(), "获取成功", signKey);
