@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {Button, Input, Layout, theme, message as messageAntd, Modal, Upload, Select} from 'antd';
+import {Button, Input, Layout, theme, message as messageAntd, Modal, Upload, Select, Empty} from 'antd';
 import {PlusOutlined, LoadingOutlined, UploadOutlined} from '@ant-design/icons';
 import Message from "./components/message";
 
@@ -275,6 +275,23 @@ const App = () => {
           <Content style={{margin: '10px 10px 0'}}>
             <div style={{padding: 10, height: '100%', background: colorBgContainer}}>
               <div ref={chatWrapperRef} className='message_box'>
+                  {window.localStorage.getItem('messages') === ""
+                      ?
+                      <Empty style={{marginTop: 50}}
+                        image="/dog.gif"
+                        imageStyle={{
+                            height: 150,
+                        }}
+                        description={
+                            <span>
+                              不会就问吧？😁
+                            </span>
+                                                                    }
+                      >
+                      </Empty>
+                          :
+                          null
+                  }
                 {
                   messages.map((ele, index) => {
                     return <div key={index}>
