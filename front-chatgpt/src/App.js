@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {Button, Input, Layout, theme, message as messageAntd, Modal,Upload} from 'antd';
+import {Button, Input, Layout, theme, message as messageAntd, Modal, Upload, Select} from 'antd';
 import {PlusOutlined, LoadingOutlined, UploadOutlined} from '@ant-design/icons';
 import Message from "./components/message";
 
@@ -21,6 +21,7 @@ const App = () => {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
   const [chatKey, setChatKey] = useState(window.localStorage.getItem('key'))
+  const [model, setModel] = useState()
   const [signKey, setSignKey] = useState('')
   const [newKey, setNewKey] = useState('')
   const [keyLoading, setKeyLoading] = useState(false)
@@ -92,7 +93,8 @@ const App = () => {
       },
       body: JSON.stringify({
         prompt: newMessages.slice(-3),
-        chatKey
+        chatKey,
+        model
       })
     })
       .then(res => res.json())
@@ -144,6 +146,15 @@ const App = () => {
         }
 
       })
+  };
+
+  /**
+   * 处理下拉选择
+   * @param value
+   */
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+    setModel(value)
   };
 
   useEffect(() => {
@@ -310,6 +321,23 @@ const App = () => {
                 }
               </div>
               <div className='message_input'>
+                <Select
+                    defaultValue="gpt-3.5"
+                    style={{
+                      width: 100,
+                    }}
+                    onChange={handleChange}
+                    options={[
+                      {
+                        value: 'gpt-3.5',
+                        label: 'gpt-3.5',
+                      },
+                      {
+                        value: 'gpt-4',
+                        label: 'gpt-4',
+                      },
+                    ]}
+                />
                 <div className='message_input_text'>
 
                   <TextArea
