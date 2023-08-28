@@ -1,13 +1,25 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {Button, Input, Layout, theme, message as messageAntd, Modal, Upload, Select, Empty} from 'antd';
-import {PlusOutlined, LoadingOutlined, UploadOutlined} from '@ant-design/icons';
+import {
+  Button,
+  Input,
+  Layout,
+  theme,
+  message as messageAntd,
+  Modal,
+  Select,
+  Empty,
+  FloatButton,
+  Popconfirm
+} from 'antd';
+import {PlusOutlined, LoadingOutlined, UploadOutlined, CommentOutlined} from '@ant-design/icons';
 import Message from "./components/message";
 
 const {TextArea} = Input;
 const {Content, Footer, Sider} = Layout;
 const messageType = {
   assistant: "assistant",
-  user: "user"
+  user: "user",
+  system: "system"
 };
 const App = () => {
   const {
@@ -29,6 +41,7 @@ const App = () => {
     '//api-chatgpt.yuanshuai.vip',
     '//apiv2-chatgpt.yuanshuai.vip'
   ])
+  const [roleMessage,setRoleMessage] = useState();
 
   /**
    * 获取随机推流hosts
@@ -76,7 +89,15 @@ const App = () => {
       return
     }
     if (onRequest) return;
-    const newMessages = [...messages, {
+    let newMessages = [...messages];
+    if (localStorage.getItem("role")) {
+      newMessages = [...newMessages, {
+        role: messageType.system,
+        content: localStorage.getItem("role")
+      }]
+    }
+    console.log(newMessages)
+    newMessages = [...newMessages, {
       role: messageType.user,
       content: question
     }];
@@ -213,6 +234,20 @@ const App = () => {
       });
   }
 
+  const roleChange = (e) =>{
+    setRoleMessage(e.target.value);
+  }
+
+  const handleRole = () =>{
+    localStorage.setItem("role", roleMessage)
+  }
+
+  const cancelRole = () =>{
+    localStorage.removeItem("role")
+  }
+
+
+
 
   return (
     <div>
@@ -337,6 +372,26 @@ const App = () => {
                   })
                 }
               </div>
+              <Popconfirm
+                  title="请输入gpt角色描述"
+                  description = {
+                    <Input
+                        placeholder= {localStorage.getItem("role")}
+                        onChange={roleChange}/>
+                  }
+                  okText="确认"
+                  onConfirm={handleRole}
+                  cancelText="清除"
+                  onCancel={cancelRole}
+              >
+                <FloatButton
+                    icon={<CommentOutlined />}
+                    style={{marginBottom: 60}}
+                    tooltip={<div>这里可以输入您想让gpt扮演的角色</div>}
+                    badge={{ dot: true }}
+                    onClick={() => console.log('click')}
+                />
+              </Popconfirm>
               <div className='message_input'>
                 <Select
                     defaultValue="gpt-3.5"
