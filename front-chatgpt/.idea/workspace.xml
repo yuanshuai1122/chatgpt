@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c16a4e4c-0876-4ff6-b730-d0a743e95014" name="Changes" comment="1">
+    <list default="true" id="c16a4e4c-0876-4ff6-b730-d0a743e95014" name="Changes" comment="提交">
       <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -82,7 +82,8 @@
       <workItem from="1688361532418" duration="832000" />
       <workItem from="1692786886844" duration="616000" />
       <workItem from="1692847469696" duration="4700000" />
-      <workItem from="1693186460236" duration="2246000" />
+      <workItem from="1693186460236" duration="2380000" />
+      <workItem from="1693195522176" duration="1003000" />
     </task>
     <task id="LOCAL-00001" summary="ui修改">
       <created>1687784936999</created>
@@ -112,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692855327468</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="提交">
+      <created>1693188759274</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693188759274</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +142,7 @@
     <MESSAGE value="随机推流host" />
     <MESSAGE value="支持切换model" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交" />
   </component>
 </project>
