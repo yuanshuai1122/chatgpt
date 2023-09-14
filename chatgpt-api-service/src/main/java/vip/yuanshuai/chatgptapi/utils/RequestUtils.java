@@ -31,19 +31,18 @@ public class RequestUtils {
   /**
    * 构建请求参数
    *
-   * @param value 价值
+   * @param model 模型版本
    * @return {@link Map}<{@link String}, {@link Object}>
    */
-  public static Map<String, Object> buildRequestParams(String value) {
+  public static Map<String, Object> buildRequestParams(String model) {
     Map<String, Object> data = new HashMap<>();
-    data.put("model", "gpt-4-0613");
+    data.put("model", model);
     data.put("stream", true);
-    //data.put("top_p", 1);
-    //data.put("temperature", 1);
-    //data.put("n", 1);
-    //data.put("presence_penalty", 0);
-    //data.put("frequency_penalty", 0);
-    //data.put("max_tokens", 1);
+    data.put("top_p", 1);
+    data.put("temperature", 1);
+    data.put("n", 1);
+    data.put("presence_penalty", 0);
+    data.put("frequency_penalty", 0);
     return data;
   }
 

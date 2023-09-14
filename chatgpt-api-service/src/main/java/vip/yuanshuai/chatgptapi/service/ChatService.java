@@ -13,6 +13,7 @@ import vip.yuanshuai.chatgptapi.config.ChatExecutorConfig;
 import vip.yuanshuai.chatgptapi.config.OkHttpClientSingleton;
 import vip.yuanshuai.chatgptapi.constants.ApiBaseUrl;
 import vip.yuanshuai.chatgptapi.enums.ChatRoleEnum;
+import vip.yuanshuai.chatgptapi.enums.ModelEnums;
 import vip.yuanshuai.chatgptapi.enums.ResultCode;
 import vip.yuanshuai.chatgptapi.mapper.ChatApiKeyMapper;
 import vip.yuanshuai.chatgptapi.mapper.ChatSuccessLogMapper;
@@ -67,7 +68,8 @@ public class ChatService {
   @Autowired
   private HttpServletRequest request;
   
-  private static final ConcurrentHashMap<Integer, String> apiMap = new ConcurrentHashMap<>(16);
+  private static final ConcurrentHashMap<Integer, String> API_MAP_3_5 = new ConcurrentHashMap<>(16);
+  private static final ConcurrentHashMap<Integer, String> API_MAP_4 = new ConcurrentHashMap<>(16);
 
 
 
@@ -84,13 +86,15 @@ public class ChatService {
       log.info("缓存中没查询到请求消息, key:{}", signKey);
       return null;
     }
+    // 反序列化
+    ChatSuccessLog chatSuccessLog = new Gson().fromJson(value, ChatSuccessLog.class);
 
     // new SseEmitter timeout设置为0表示不超时
     SseEmitter emitter = new SseEmitter();
     log.info("创建SseEmitter, {}", emitter);
 
     // 获取随机一条key
-    if (apiMap.size() == 0) {
+    if (API_MAP_3_5.size() == 0 && API_MAP_4.size() == 0) {
       QueryWrapper<ChatApiKey> wrapper = new QueryWrapper<>();
       wrapper.lambda().ne(ChatApiKey::getStatus, 1);
       List<ChatApiKey> chatApiKeys = chatApiKeyMapper.selectList(wrapper);
@@ -99,31 +103,47 @@ public class ChatService {
         return null;
       }
       for (ChatApiKey chatApiKey : chatApiKeys) {
-        apiMap.put(chatApiKey.getId(), chatApiKey.getApiKey());
+        if (chatApiKey.getAccount().equals(ModelEnums.GPT_VERSION_3_5.getName())) {
+          API_MAP_3_5.put(chatApiKey.getId(), chatApiKey.getApiKey());
+        }
+        if (chatApiKey.getAccount().equals(ModelEnums.GPT_VERSION_4.getName())) {
+          API_MAP_4.put(chatApiKey.getId(), chatApiKey.getApiKey());
+        }
       }
     }
-    // 获取随机key
-    Integer [] keys = apiMap.keySet().toArray(new Integer[0]);
-    int random = (int) (Math.random()*(keys.length));
-    Integer randomKey = keys[random];
-    String apiKey = apiMap.get(randomKey);
 
-    log.info("开始构造流式请求，id:{}, apiKey:{}", randomKey, apiKey);
+    String apiKey = "";
+    // 随机3.5版本
+    if (chatSuccessLog.getModel().equals(ModelEnums.GPT_VERSION_3_5.getModel())) {
+      // 获取随机key
+      Integer [] keys = API_MAP_3_5.keySet().toArray(new Integer[0]);
+      int random = (int) (Math.random()*(keys.length));
+      Integer randomKey = keys[random];
+      apiKey = API_MAP_3_5.get(randomKey);
+    }
+    // 随机4
+    if (chatSuccessLog.getModel().equals(ModelEnums.GPT_VERSION_4.getModel())) {
+      // 获取随机key
+      Integer [] keys = API_MAP_4.keySet().toArray(new Integer[0]);
+      int random = (int) (Math.random()*(keys.length));
+      Integer randomKey = keys[random];
+      apiKey = API_MAP_4.get(randomKey);
+    }
+
+
+    log.info("开始构造流式请求，apiKey:{}, model:{}" , apiKey, chatSuccessLog.getModel());
 
     // 构建请求头
     Map<String, String> headers = RequestUtils.buildRequestHeaders(apiKey);
     log.info("构建请求头, headers: {}", headers);
-
     // 构建请求体
-    ChatSuccessLog chatSuccessLog = new Gson().fromJson(value, ChatSuccessLog.class);
     List<ChatPrompt> prompts =new Gson().fromJson(chatSuccessLog.getContent(), new TypeToken<List<ChatPrompt>>() {}.getType());
     log.info("prompts:{}", prompts);
-    Map<String, Object> data = RequestUtils.buildRequestParams(value);
+    Map<String, Object> data = RequestUtils.buildRequestParams(chatSuccessLog.getModel());
     data.put("messages", prompts);
     log.info("构建请求体, data: {}", data);
     // 删除缓存
-    //redisTemplate.delete(signKey);
-
+    redisTemplate.delete(signKey);
     // 静态okhttpClient
     OkHttpClient.Builder builder = OkHttpClientSingleton.getInstance().newBuilder();
     builder.connectTimeout(Duration.ofSeconds(300));
@@ -192,42 +212,6 @@ public class ChatService {
 
     // 返回 SseEmitter 实例
     return emitter;
-  }
-
-
-
-  public ResponseResult<ChatResult> chatCommon(ChatProcess dto) {
-
-    try {
-      log.info("用户: {}",  dto.getPrompt());
-      OkHttpUtils client = OkHttpUtils.builder();
-
-      client.url(ApiBaseUrl.BASE_CHAT_URL);
-      client.addHeader("Content-Type", "application/json");
-      client.addHeader("Authorization", "Bearer " + "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");
-      client.addParam("model", "gpt-3.5-turbo");
-      client.addParam("messages", dto.getPrompt());
-      String sync = client.post(true).sync();
-      ChatResult chatResult = JSON.parseObject(sync, ChatResult.class);
-      System.out.println(chatResult);
-
-
-      // 插入用户提问到数据库
-      log.info("user: {}", dto.getPrompt());
-      ChatSuccessLog userChat = new ChatSuccessLog(null, 1, ChatRoleEnum.USER.getRole(), ValueUtils.getMessageUUID(), chatResult.getId(), new Gson().toJson(dto.getPrompt()), new Date());
-      chatSuccessLogMapper.insert(userChat);
-
-      // 插入到数据库
-      log.info("chat: {}",  chatResult.getChoices().get(0).getMessage().getContent());
-      ChatSuccessLog chatSuccessLog = new ChatSuccessLog(null, 1, ChatRoleEnum.ASSISTANT.getRole(), chatResult.getId(),  chatResult.getId(), chatResult.getChoices().get(0).getMessage().getContent(), new Date());
-      chatSuccessLogMapper.insert(chatSuccessLog);
-
-      return new ResponseResult<>(ResultCode.SUCCESS.getCode(), "请求成功", chatResult);
-    }catch (Exception e) {
-      log.info(e.toString());
-      return null;
-    }
-
   }
 
 

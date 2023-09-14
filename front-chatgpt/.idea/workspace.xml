@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c16a4e4c-0876-4ff6-b730-d0a743e95014" name="Changes" comment="随机推流host">
+    <list default="true" id="c16a4e4c-0876-4ff6-b730-d0a743e95014" name="Changes" comment="提交">
       <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/ChatGptService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/KeyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/service/KeyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatgpt-server/src/main/java/vip/yuanshuai/chatgpt/utils/RedisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +42,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -50,6 +50,23 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,6 +80,10 @@
       <workItem from="1688103080581" duration="74000" />
       <workItem from="1688347546627" duration="654000" />
       <workItem from="1688361532418" duration="832000" />
+      <workItem from="1692786886844" duration="616000" />
+      <workItem from="1692847469696" duration="4700000" />
+      <workItem from="1693186460236" duration="2380000" />
+      <workItem from="1693195522176" duration="1003000" />
     </task>
     <task id="LOCAL-00001" summary="ui修改">
       <created>1687784936999</created>
@@ -78,7 +99,28 @@
       <option name="project" value="LOCAL" />
       <updated>1688348195194</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="支持切换model">
+      <created>1692848837658</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692848837658</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1">
+      <created>1692855327468</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692855327468</updated>
+    </task>
+    <task id="LOCAL-00005" summary="提交">
+      <created>1693188759274</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693188759274</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +140,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ui修改" />
     <MESSAGE value="随机推流host" />
-    <option name="LAST_COMMIT_MESSAGE" value="随机推流host" />
+    <MESSAGE value="支持切换model" />
+    <MESSAGE value="1" />
+    <MESSAGE value="提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交" />
   </component>
 </project>

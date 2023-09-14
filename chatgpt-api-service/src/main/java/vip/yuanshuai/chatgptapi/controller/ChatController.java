@@ -27,19 +27,6 @@ public class ChatController {
     this.chatService = chatService;
   }
 
-  /**
-   * 聊天（普通版）
-   *
-   * @param dto DTO
-   * @return {@link ResponseResult}<{@link ChatResult}>
-   */
-  @Signature
-  @PostMapping("/sync")
-  public ResponseResult<ChatResult> chatCommon(@RequestBody ChatProcess dto) {
-    log.info("开始请求chat：{}", dto);
-    return chatService.chatCommon(dto);
-  }
-
 
   /**
    * 聊天（流式）
