@@ -302,6 +302,16 @@ const App = () => {
                                 清除KEY
                             </Button>
                         </div>
+                        <div className='getkey'>
+                            <Button
+                                block
+                                onClick={() => {
+                                    window.open("https://gptv5.yuanshuai.vip", "_blank");
+                                }}
+                            >
+                                🚢❤️版本
+                            </Button>
+                        </div>
                     </div>
                 </Sider>
                 <Layout>
